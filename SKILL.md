@@ -542,3 +542,74 @@ messages = [
 
 > ⚠️ 接了记忆层且要演示召回时，**提前把演示对话 save 进去**——
 > 召回有数秒到数分钟延迟，现场写现场召回一定命中不了。
+
+---
+
+# 附：视觉语言（用户未指定风格时的唯一标准）
+
+提炼自《心屿》美术参考图，色值经采样与对比度实算。完整版见仓库 `BRAND.md`。
+
+**四条铁律**
+1. **任何颜色 HSL 饱和度 ≤ 40%**。要强调就加深明度、放大字号、提升阴影层级，不许提饱和度。
+2. **不用纯白 `#FFFFFF` 背景、不用纯黑阴影**。纯黑会让低饱和画面发脏。
+3. **圆角刻意偏大**（卡片 24px 起），这是微立体感的来源。
+4. **只用系统字体栈**，任何网络字体一律忽略（禁 CDN）。
+
+**材质**：微缩景观 + 软胶/搪瓷质感 + 柔和体积光，无硬边投影，暗部不死黑。
+
+**五个情绪主题**（选一个当主色，默认星夜）：
+
+| 主题 | 主色（大面积） | 深色（文字/CTA） | 气质 |
+|---|---|---|---|
+| 常青 | `#7D9172` | `#4A6343` | 成长、日常、思考 |
+| 暖沙 | `#C8A89F` | `#8A6255` | 平静、治愈 |
+| 雪松 | `#B1CED9` | `#4B6E82` | 低落、安静倾诉 |
+| 花田 | `#DFAEB8` | `#8E5A69` | 喜悦、心动 |
+| **星夜** | **`#6C97AC`** | **`#3B6178`** | 灵感、深夜独白 |
+
+「深色」档 on 背景均 ≥4.8:1，**正文和图标用它**；「主色」档白字仅 3.1–3.4:1，
+**只能用于 ≥18px 加粗按钮**，小字必须用深色档做底。
+
+```css
+:root{
+  --bg:#F2F1EE; --surface:#FAFAF8; --surface-sunken:#E8E7E3;
+  --text:#2B3446; --text-muted:#656F7E; --divider:#E3E1DC;
+  --primary:#6C97AC; --primary-deep:#3B6178;      /* 换主题只改这行 */
+  --success:#526B4A; --warning:#856230; --danger:#9A5A52;
+
+  --font-sans:"PingFang SC","HarmonyOS Sans SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  --font-num:ui-rounded,"SF Pro Rounded","PingFang SC",system-ui,sans-serif;
+
+  --sp-1:4px;--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-5:24px;--sp-6:32px;--sp-7:48px;
+  --r-sm:10px;--r-md:16px;--r-lg:24px;--r-xl:32px;--r-full:999px;
+
+  /* 双层阴影：外层弥散 + 内层顶部高光，阴影色是冷灰蓝不是黑 */
+  --clay-1:0 2px 6px rgba(43,52,70,.05),inset 0 1px 0 rgba(255,255,255,.75);
+  --clay-2:0 8px 20px -6px rgba(43,52,70,.09),inset 0 2px 0 rgba(255,255,255,.80);
+  --clay-3:0 18px 36px -12px rgba(43,52,70,.13),inset 0 2px 1px rgba(255,255,255,.85);
+  --clay-4:0 30px 60px -20px rgba(43,52,70,.17),inset 0 3px 2px rgba(255,255,255,.90);
+  --clay-pressed:inset 0 3px 8px rgba(43,52,70,.13);
+  --clay-inset:inset 0 2px 5px rgba(43,52,70,.09);
+
+  --ease:cubic-bezier(.34,.8,.36,1);
+  --dur-fast:150ms;--dur:220ms;--dur-slow:380ms;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#151C26; --surface:#1F2836; --surface-sunken:#0F151D;
+  --text:#E8EAEC; --text-muted:#98A3B2; --divider:#2C3644;
+  --primary:#8FB4C6; --primary-deep:#6C97AC;
+  --clay-1:0 2px 6px rgba(0,0,0,.30),inset 0 1px 0 rgba(255,255,255,.06);
+  --clay-2:0 8px 20px -6px rgba(0,0,0,.38),inset 0 2px 0 rgba(255,255,255,.06);
+  --clay-3:0 18px 36px -12px rgba(0,0,0,.46),inset 0 2px 1px rgba(255,255,255,.07);
+  --clay-4:0 30px 60px -20px rgba(0,0,0,.54),inset 0 3px 2px rgba(255,255,255,.08);
+  --clay-pressed:inset 0 3px 8px rgba(0,0,0,.42);
+  --clay-inset:inset 0 2px 5px rgba(0,0,0,.34);
+}}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+```
+
+**阴影用法**：clay-1 标签/列表项｜clay-2 卡片/气泡/输入框｜clay-3 主按钮/选中项｜
+clay-4 弹窗/抽屉｜pressed 任何 `:active`｜inset 输入框凹陷。
+
+**反模式**：饱和度>40%｜纯白背景｜纯黑阴影｜硬边投影｜直角或小圆角｜网络字体｜
+小字压在主色上｜转圈 spinner｜元素贴边拥挤。
