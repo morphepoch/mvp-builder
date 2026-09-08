@@ -48,7 +48,9 @@ git clone https://github.com/<你的用户名>/mvp-builder.git
 - DeepSeek（必填）：`api_key`；base 默认 `https://api.deepseek.com`，model 默认 `deepseek-chat`
 - 硅基记忆 seemem（可选）：租户 `token`；**说「不接」就整段跳过**，产品降级为无记忆对话
 
-答完它自测一次图像生成能力，选定路线后自动往下跑。
+答完就直接开跑。**默认纯代码路线**（直接写 HTML/CSS/JS），
+不做能力自测、不尝试生成图片——那类尝试在不支持的环境里会挂起等待，白白卡时间。
+需要"先出设计图再照图实现"的话，在第①问里写明「走图驱动」。
 
 ---
 

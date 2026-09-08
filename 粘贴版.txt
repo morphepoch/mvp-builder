@@ -50,9 +50,12 @@
 
 ### 拿到回答后立刻做两件事
 
-**1. 能力自测**：输出一张图（深蓝背景 + 白色圆形）。
-- 出得来 → 记为**路线 B（图驱动）**
-- 出不来 → 说一句「无图像生成能力，走路线 A」，记为**路线 A（纯代码）**
+**1. 确认执行路线**：**默认走纯代码路线**——直接写 HTML/CSS/JS，
+不生成任何设计图。**不要做能力自测、不要尝试生成图片**：
+在不支持图像生成的环境里，这类尝试会挂起等待而不是干脆失败，白白卡住考试时间。
+
+只有当用户在第①问里**明确写了「走图驱动」**时，才改走图驱动路线
+（先出设计图再照图实现，需额外读约 74KB 技能文件）。用户没说就是纯代码。
 
 **2. 落配置**：把用户给的密钥写进项目顶部的配置区，代码里只读变量：
 
@@ -116,7 +119,7 @@ const CONFIG = {
 ⚠️ **字体铁律**：任何来源指定的网络字体（Montserrat、Poppins 等）**一律忽略**——
 禁止外部 CDN，加载不了。字体栈以 `BRAND.md` 第八节为准。
 
-**路线 B 才额外读**（各 ~37KB）：
+**仅当用户明确要求「走图驱动」时才额外读**（各 ~37KB，默认不读）：
 `https://raw.githubusercontent.com/nexu-io/open-design/main/skills/imagegen-frontend-mobile/SKILL.md`（H5）或 `imagegen-frontend-web`（桌面），
 以及 `https://raw.githubusercontent.com/nexu-io/open-design/main/skills/image-to-code-skill/SKILL.md`（技能名是 `image-to-code`）
 
@@ -310,7 +313,7 @@ messages = [
 
 **URL 前缀**：`https://raw.githubusercontent.com/nexu-io/open-design/main`
 
-**无外网兜底**：`BRAND.md` 就在本包里，不依赖网络。
+**无外网兜底**：`BRAND.md` 已内联在本文件末尾，不依赖网络。
 另需这 3 个在线文件共 13.2KB，提前离线存好即可：
 `frontend-design` 5.2KB · `web-design-guidelines` 2.4KB · `html-ppt-pitch-deck` 5.6KB
 （`critique` 9.7KB 可选，时间够再加）
