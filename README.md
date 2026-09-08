@@ -39,7 +39,8 @@ git clone https://github.com/<你的用户名>/mvp-builder.git
 
 **② 评分最看重什么？**（可多选如 `BCF`）功能完整度 / 创意 / 设计感 / 技术难度 / 商业价值 / 演示效果
 
-**③ API Key** DeepSeek `api_key`；seemem `token`（不接就写「不接」）
+**③ API Key** DeepSeek `api_key`；seemem `token`（不接就写「不接」）；
+OpenRouter `api_key`（**只有要 AIGC 角色立绘才填**，不填走内联 SVG）
 
 想指定视觉风格或别的要求，后面补一句即可。**不补充就按默认执行，不会再来回确认。**
 
@@ -67,7 +68,9 @@ git clone https://github.com/<你的用户名>/mvp-builder.git
 ## 目录
 
 ```
-SKILL.md              # 主编排器，自包含（BRAND.md 已内联在末尾）
+SKILL.md              # 主编排器，自包含（BRAND.md 与角色对话内核速查表已内联）
+tools/
+  gen_openrouter.py   # OpenRouter 生图脚本：正确端点 + 一致性三件套 + 原生透明底
 BRAND.md              # 内置视觉语言，独立副本，方便阅读复用
 brand-preview.html    # 视觉可视预览，浏览器直接打开
 粘贴版.txt            # SKILL.md 纯文本版，供方式 C
@@ -127,3 +130,20 @@ domain/companion/     # 角色对话内核 —— 只要产品有角色对话就
   SKILL.md 内置识别规则，只引用经过验证的 4 个真实技能。
 - 阶段一/四/五需联网抓取 4 个 OpenDesign 技能文件（共 13.2KB）。
   无外网时提前离线保存或跳过——`BRAND.md` 已内联，视觉规范不受影响。
+
+## 🖼 AIGC 角色立绘（可选）
+
+需要角色形象时，`tools/gen_openrouter.py` 已封装好正确调用方式。
+
+**最容易踩的坑**：OpenRouter 的图像生成走 `POST /api/v1/images`，
+**不是** `/api/v1/chat/completions`；图像模型也不在 `/api/v1/models` 里，
+而在独立的 `/api/v1/images/models`。用错端点会收到 500 / 403，
+看起来像"模型不存在"或"区域封锁"，**实际只是端点错了**。
+
+**一致性三件套**（缺一不可）：固定描述串 + 固定 `--seed` + `--ref` 参考图。
+配 `--transparent` 直接出透明底，不要生成白底再抠图。
+
+默认模型 `bytedance-seed/seedream-5-0-lite`：$0.035/张，输入参考图免费，
+支持 `input_references` 0–14 张、`seed`、`n` 1–4、2K/4K。
+
+不给 OpenRouter key 就走内联 SVG，视觉仍严格按 DESIGN.md，一致性要求同样严。
