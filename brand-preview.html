@@ -1,0 +1,183 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>心屿 · 品牌视觉语言</title>
+<style>
+:root{
+  --bg:#F2F1EE;--surface:#FAFAF8;--surface-sunken:#E8E7E3;
+  --text:#2B3446;--text-muted:#656F7E;--divider:#E3E1DC;
+  --primary:#6C97AC;--primary-deep:#3B6178;
+  --success:#526B4A;--warning:#856230;--danger:#9A5A52;
+  --font-sans:"PingFang SC","HarmonyOS Sans SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  --font-num:ui-rounded,"SF Pro Rounded","PingFang SC",system-ui,sans-serif;
+  --sp-4:16px;--sp-5:24px;--sp-6:32px;--sp-7:48px;
+  --r-sm:10px;--r-md:16px;--r-lg:24px;--r-xl:32px;--r-full:999px;
+  --clay-1:0 2px 6px rgba(43,52,70,.05),inset 0 1px 0 rgba(255,255,255,.75);
+  --clay-2:0 8px 20px -6px rgba(43,52,70,.09),inset 0 2px 0 rgba(255,255,255,.80);
+  --clay-3:0 18px 36px -12px rgba(43,52,70,.13),inset 0 2px 1px rgba(255,255,255,.85);
+  --clay-4:0 30px 60px -20px rgba(43,52,70,.17),inset 0 3px 2px rgba(255,255,255,.90);
+  --clay-pressed:inset 0 3px 8px rgba(43,52,70,.13);
+  --clay-inset:inset 0 2px 5px rgba(43,52,70,.09);
+  --ease:cubic-bezier(.34,.8,.36,1);--dur-fast:150ms;--dur:220ms;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#151C26;--surface:#1F2836;--surface-sunken:#0F151D;
+  --text:#E8EAEC;--text-muted:#98A3B2;--divider:#2C3644;
+  --clay-1:0 2px 6px rgba(0,0,0,.30),inset 0 1px 0 rgba(255,255,255,.06);
+  --clay-2:0 8px 20px -6px rgba(0,0,0,.38),inset 0 2px 0 rgba(255,255,255,.06);
+  --clay-3:0 18px 36px -12px rgba(0,0,0,.46),inset 0 2px 1px rgba(255,255,255,.07);
+  --clay-4:0 30px 60px -20px rgba(0,0,0,.54),inset 0 3px 2px rgba(255,255,255,.08);
+  --clay-pressed:inset 0 3px 8px rgba(0,0,0,.42);--clay-inset:inset 0 2px 5px rgba(0,0,0,.34);
+}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-sans);
+ font-size:15px;line-height:1.65;padding:var(--sp-6) var(--sp-5) var(--sp-7);
+ transition:background var(--dur) var(--ease),color var(--dur) var(--ease)}
+.w{max-width:940px;margin:0 auto}
+h1{font-family:var(--font-num);font-size:28px;line-height:1.3;font-weight:600;margin:0 0 4px}
+h2{font-size:17px;font-weight:600;margin:var(--sp-7) 0 var(--sp-4);
+ padding-bottom:8px;border-bottom:1px solid var(--divider)}
+.sub{color:var(--text-muted);font-size:13px;margin:0 0 8px}
+.themes{display:flex;gap:10px;flex-wrap:wrap;margin:var(--sp-5) 0}
+.th{padding:9px 18px;border:none;border-radius:var(--r-full);cursor:pointer;
+ font-family:inherit;font-size:14px;font-weight:600;background:var(--surface);
+ color:var(--text);box-shadow:var(--clay-1);transition:all var(--dur-fast) var(--ease)}
+.th.on{background:var(--primary-deep);color:#FAFAF8;box-shadow:var(--clay-3)}
+.grid{display:grid;gap:var(--sp-4);grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}
+.sw{border-radius:var(--r-md);padding:var(--sp-4);box-shadow:var(--clay-2);
+ background:var(--surface);display:flex;flex-direction:column;gap:5px}
+.chip{height:46px;border-radius:var(--r-sm);box-shadow:var(--clay-1)}
+.nm{font-size:13px;font-weight:600}
+.hex{font-size:12px;color:var(--text-muted);font-family:ui-monospace,monospace}
+.card{background:var(--surface);border-radius:var(--r-lg);padding:var(--sp-5);
+ box-shadow:var(--clay-2);margin-bottom:var(--sp-4)}
+.row{display:flex;gap:var(--sp-4);flex-wrap:wrap;align-items:center}
+.btn{background:var(--primary-deep);color:#FAFAF8;padding:14px 28px;border:none;
+ border-radius:var(--r-full);box-shadow:var(--clay-3);font-weight:600;font-size:16px;
+ font-family:inherit;cursor:pointer;transition:transform var(--dur-fast) var(--ease),box-shadow var(--dur-fast) var(--ease)}
+.btn:hover{transform:translateY(-2px);box-shadow:var(--clay-4)}
+.btn:active{transform:translateY(1px);box-shadow:var(--clay-pressed)}
+.btn:focus-visible{outline:3px solid var(--primary-deep);outline-offset:3px}
+.btn.sec{background:var(--surface-sunken);color:var(--text);box-shadow:var(--clay-2)}
+.btn:disabled{opacity:.45;box-shadow:var(--clay-1);cursor:not-allowed;transform:none}
+.inp{width:100%;background:var(--surface-sunken);border:none;border-radius:var(--r-md);
+ padding:14px 16px;box-shadow:var(--clay-inset);font-family:inherit;font-size:15px;color:var(--text)}
+.inp:focus{outline:none;box-shadow:var(--clay-inset),0 0 0 3px var(--primary)}
+.shs{display:grid;gap:var(--sp-5);grid-template-columns:repeat(auto-fill,minmax(112px,1fr))}
+.sh{height:86px;border-radius:var(--r-lg);background:var(--surface);display:flex;
+ align-items:flex-end;justify-content:center;padding-bottom:8px;font-size:12px;color:var(--text-muted)}
+.orbs{display:flex;gap:var(--sp-4);flex-wrap:wrap}
+.orb{width:64px;height:64px;border-radius:var(--r-full);box-shadow:var(--clay-1);border:none;
+ background:var(--surface);cursor:pointer;transition:all var(--dur) var(--ease);
+ display:flex;align-items:center;justify-content:center}
+.orb i{width:26px;height:26px;border-radius:var(--r-full);display:block;
+ box-shadow:inset 0 2px 3px rgba(255,255,255,.5),0 2px 4px rgba(43,52,70,.15)}
+.orb.on{box-shadow:var(--clay-3);transform:scale(1.09)}
+.bub{max-width:74%;padding:12px 16px;border-radius:var(--r-lg);box-shadow:var(--clay-2);margin-bottom:12px}
+.bub.me{background:var(--primary-deep);color:#FAFAF8;margin-left:auto;border-bottom-right-radius:var(--r-sm)}
+.bub.ai{background:var(--surface);border-bottom-left-radius:var(--r-sm)}
+.tag{display:inline-block;padding:5px 12px;border-radius:var(--r-full);font-size:12px;
+ font-weight:600;box-shadow:var(--clay-1);background:var(--surface);color:var(--primary-deep)}
+.dots{display:inline-flex;gap:5px;padding:12px 16px;background:var(--surface);
+ border-radius:var(--r-lg);box-shadow:var(--clay-2)}
+.dots i{width:7px;height:7px;border-radius:50%;background:var(--text-muted);animation:b 1.3s infinite var(--ease)}
+.dots i:nth-child(2){animation-delay:.16s}.dots i:nth-child(3){animation-delay:.32s}
+@keyframes b{0%,60%,100%{transform:translateY(0);opacity:.45}30%{transform:translateY(-4px);opacity:1}}
+.big{font-family:var(--font-num);font-size:40px;line-height:1.1;font-weight:700;color:var(--primary-deep)}
+.isle{display:flex;justify-content:center;padding:var(--sp-6) 0}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style></head><body><div class="w">
+
+<h1>心屿 · 品牌视觉语言</h1>
+<p class="sub">微缩景观 · 软胶材质 · 低饱和自然色 · 双层柔和阴影 · 全部色值取自 PRD 参考图采样</p>
+
+<h2>五个情绪主题（点击切换，全站实时变色）</h2>
+<div class="themes">
+  <button class="th" data-p="#7D9172" data-d="#4A6343">常青林屿</button>
+  <button class="th" data-p="#C8A89F" data-d="#8A6255">暖沙礁</button>
+  <button class="th" data-p="#B1CED9" data-d="#4B6E82">雪松屿</button>
+  <button class="th" data-p="#DFAEB8" data-d="#8E5A69">花田屿</button>
+  <button class="th on" data-p="#6C97AC" data-d="#3B6178">星夜屿（默认）</button>
+</div>
+
+<div class="isle">
+<svg width="260" height="180" viewBox="0 0 260 180" fill="none" aria-label="浮岛示意">
+  <defs>
+    <radialGradient id="g1" cx=".4" cy=".3"><stop offset="0" stop-color="var(--primary)" stop-opacity=".95"/>
+    <stop offset="1" stop-color="var(--primary-deep)"/></radialGradient>
+  </defs>
+  <ellipse cx="130" cy="152" rx="72" ry="10" fill="var(--divider)"/>
+  <path d="M62 96c0-22 30-38 68-38s68 16 68 38c0 14-14 26-34 34-12 16-22 22-34 22s-22-6-34-22c-20-8-34-20-34-34Z" fill="url(#g1)"/>
+  <ellipse cx="130" cy="92" rx="68" ry="26" fill="var(--primary)"/>
+  <ellipse cx="130" cy="88" rx="60" ry="21" fill="var(--surface)" opacity=".28"/>
+  <circle cx="104" cy="78" r="15" fill="var(--surface)" opacity=".55"/>
+  <circle cx="152" cy="82" r="11" fill="var(--surface)" opacity=".4"/>
+  <circle cx="130" cy="60" r="7" fill="var(--surface)" opacity=".75"/>
+</svg>
+</div>
+
+<h2>中性底色（所有项目共用，不随主题变）</h2>
+<div class="grid">
+  <div class="sw"><div class="chip" style="background:#F2F1EE"></div><span class="nm">背景</span><span class="hex">#F2F1EE</span></div>
+  <div class="sw"><div class="chip" style="background:#FAFAF8"></div><span class="nm">表面</span><span class="hex">#FAFAF8</span></div>
+  <div class="sw"><div class="chip" style="background:#E8E7E3"></div><span class="nm">表面-凹</span><span class="hex">#E8E7E3</span></div>
+  <div class="sw"><div class="chip" style="background:#2B3446"></div><span class="nm">正文 11.1:1</span><span class="hex">#2B3446</span></div>
+  <div class="sw"><div class="chip" style="background:#656F7E"></div><span class="nm">次要 4.5:1</span><span class="hex">#656F7E</span></div>
+  <div class="sw"><div class="chip" style="background:#526B4A"></div><span class="nm">成功 5.2:1</span><span class="hex">#526B4A</span></div>
+  <div class="sw"><div class="chip" style="background:#856230"></div><span class="nm">提醒 4.9:1</span><span class="hex">#856230</span></div>
+  <div class="sw"><div class="chip" style="background:#9A5A52"></div><span class="nm">危险 4.7:1</span><span class="hex">#9A5A52</span></div>
+</div>
+
+<h2>阴影 · 双层（外弥散 + 内高光），阴影色是冷灰蓝不是黑</h2>
+<div class="shs">
+  <div class="sh" style="box-shadow:var(--clay-1)">clay-1</div>
+  <div class="sh" style="box-shadow:var(--clay-2)">clay-2</div>
+  <div class="sh" style="box-shadow:var(--clay-3)">clay-3</div>
+  <div class="sh" style="box-shadow:var(--clay-4)">clay-4</div>
+  <div class="sh" style="box-shadow:var(--clay-pressed)">pressed</div>
+  <div class="sh" style="box-shadow:var(--clay-inset)">inset</div>
+</div>
+
+<h2>组件</h2>
+<div class="card"><p class="sub">按钮（hover / 按下 / Tab 聚焦都试试）</p>
+<div class="row"><button class="btn">主要操作</button><button class="btn sec">次要</button><button class="btn" disabled>不可用</button></div></div>
+
+<div class="card"><p class="sub">输入框（聚焦看光环）</p><input class="inp" placeholder="说点什么…"></div>
+
+<div class="card"><p class="sub">选择器 · 圆形软胶质感</p>
+<div class="orbs">
+<button class="orb on"><i style="background:#7D9172"></i></button>
+<button class="orb"><i style="background:#C8A89F"></i></button>
+<button class="orb"><i style="background:#B1CED9"></i></button>
+<button class="orb"><i style="background:#DFAEB8"></i></button>
+<button class="orb"><i style="background:#6C97AC"></i></button>
+</div></div>
+
+<div class="card"><p class="sub">对话气泡 + 标签 + 加载态（三点跳动，不用转圈）</p>
+<div class="bub me">今天有点累，不太想说话。</div>
+<div class="bub ai">那就不说。我在这儿待着就行。<br><span class="tag" style="margin-top:8px">识别到 · 疲惫</span></div>
+<div class="dots"><i></i><i></i><i></i></div></div>
+
+<div class="card"><p class="sub">数字（圆体）</p>
+<div class="row" style="align-items:baseline"><span class="big">128</span><span class="sub">件心迹物品</span></div></div>
+
+<h2>空态（不用「暂无数据」）</h2>
+<div class="card" style="text-align:center;padding:var(--sp-7) var(--sp-5)">
+<svg width="76" height="76" viewBox="0 0 76 76" fill="none" style="margin-bottom:10px">
+  <ellipse cx="38" cy="64" rx="22" ry="4" fill="var(--divider)"/>
+  <circle cx="38" cy="36" r="21" fill="var(--surface-sunken)"/>
+  <circle cx="31" cy="33" r="2.4" fill="var(--text-muted)"/><circle cx="45" cy="33" r="2.4" fill="var(--text-muted)"/>
+  <path d="M31 44c4 3 10 3 14 0" stroke="var(--text-muted)" stroke-width="2.2" stroke-linecap="round"/>
+</svg>
+<div style="font-weight:600">这里还空着</div><p class="sub" style="margin-top:4px">等你写下第一句，我就记着了</p></div>
+
+</div><script>
+const r=document.documentElement.style;
+document.querySelectorAll('.th').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.th').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');
+  r.setProperty('--primary',b.dataset.p); r.setProperty('--primary-deep',b.dataset.d);
+}));
+document.querySelectorAll('.orb').forEach(o=>o.addEventListener('click',()=>{
+  document.querySelectorAll('.orb').forEach(x=>x.classList.remove('on')); o.classList.add('on');
+}));
+</script></body></html>
